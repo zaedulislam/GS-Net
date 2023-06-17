@@ -19,7 +19,7 @@ Results under Protocol #1 (mean per-joint position error) and Protocol #2 (mean 
 | [Weight Unsharing](https://github.com/tamasino52/Any-GCN) | 52.4mm | 41.2mm |
 | [MM-GCN](https://github.com/JaeYungLee/MM_GCN) | 51.7mm | 40.3mm |
 | [Modulated GCN](https://github.com/ZhimingZo/Modulated-GCN) | 49.4mm | 39.1mm |
-| Ours | **47.1** | **38.7** |
+| Ours | **47.1mm** | **38.7mm** |
 
 ## Quick Start
 This repository is built upon Python v3.8 and Pytorch v1.8.0 on Ubuntu 20.04.4 LTS. All experiments are conducted on a single NVIDIA RTX 3070 GPU with 8GB of memory.
