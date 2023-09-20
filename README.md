@@ -42,9 +42,23 @@ We set up the MPI-INF-3DHP dataset in the same way as [PoseAug](https://github.c
 
 
 ## Evaluating Our Pre-trained Models
-The pre-trained models can be downloaded from [Google Drive](https://drive.google.com/drive/folders/1ByA9gmEEJSMJetQoIuRA2PYfQ7hVhJ3v?usp=sharing). Put them in the `./checkpoint` directory.
+Put the pre-trained models in the `./checkpoint` directory.
 
 To evaluate our pre-trained model using the detected 2D keypoints, please run:
 ```bash
 python main_graph.py -k hrn --post_refine --module_gcn_reload 1 --post_refine_reload 1 --save_out_type post --show_protocol2 --previous_dir './checkpoint/' --save_dir './checkpoint/test_result/' --module_gcn_model model_gsnet_3_eva_post_4710.pth --post_refine_model model_post_refine_3_eva_post_4710.pth --nepoch 2
 ```
+
+## Training from scratch
+### Human 3.6M
+
+To initiate the training of our model, utilizing the identified 2D keypoints (HR-Net) along with pose refinement, please execute the following command:
+```bash
+python main_graph.py  --pro_train 1 --beta 0.2 --k hrn --batchSize 512 --hid_dim 384 --save_model 1  --save_dir './checkpoint/train_result/' --post_refine --save_out_type post --show_protocol2
+```
+
+To initiate the training of our model, utilizing the ground truth 2D keypoints (HR-Net) excluding pose refinement, please execute the following command:
+```bash
+python main_graph.py  --pro_train 1 --beta 0.2 --k gt --batchSize 512 --hid_dim 384 --save_model 1 --save_dir './checkpoint/train_result/' --show_protocol2
+```
+
