@@ -57,7 +57,7 @@ To initiate the training of our model, utilizing the identified 2D keypoints (HR
 python main_graph.py  --pro_train 1 --beta 0.2 --k hrn --batchSize 512 --hid_dim 384 --save_model 1  --save_dir './checkpoint/train_result/' --post_refine --save_out_type post --show_protocol2
 ```
 
-To initiate the training of our model, utilizing the ground truth 2D keypoints (HR-Net) excluding pose refinement, please execute the following command:
+To initiate the training of our model, utilizing the ground truth 2D keypoints excluding pose refinement, please execute the following command:
 ```bash
 python main_graph.py  --pro_train 1 --beta 0.2 --k gt --batchSize 512 --hid_dim 384 --save_model 1 --save_dir './checkpoint/train_result/' --show_protocol2
 ```
