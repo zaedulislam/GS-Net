@@ -6,11 +6,11 @@ import torch.nn as nn
 
 
 class GSNetGraphConv(nn.Module):
-    def __init__(self, in_features, out_features, adj, s=0.2, bias=True):
+    def __init__(self, in_features, out_features, adj, beta=0.2, bias=True):
         super(GSNetGraphConv, self).__init__()
         self.in_features = in_features
         self.out_features = out_features
-        self.beta = s
+        self.beta = beta
 
         self.W = nn.Parameter(
             torch.zeros(size=(2, in_features, out_features), dtype=torch.float)
