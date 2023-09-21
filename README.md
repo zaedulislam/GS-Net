@@ -54,16 +54,6 @@ Our model is evaluated on [Human3.6M](http://vision.imar.ro/human3.6m) and [MPI-
 ### MPI-INF-3DHP
 We set up the MPI-INF-3DHP dataset in the same way as [PoseAug](https://github.com/jfzhang95/PoseAug). Please refer to [DATASETS.md](https://github.com/jfzhang95/PoseAug/blob/main/DATASETS.md) to prepare the dataset file.
 
-
-## Evaluating Our Pre-trained Models
-The pre-trained models can be downloaded from [Google Drive](https://drive.google.com/drive/folders/1ByA9gmEEJSMJetQoIuRA2PYfQ7hVhJ3v?usp=sharing). Put them in the `./checkpoint/train_result` directory.
-
-To evaluate our pre-trained model using the ground truth 2D keypoints, please run:
-```bash
-python main_graph.py -k gt --beta 0.2 --batchSize 512 --hid_dim 384 --previous_dir './checkpoint/train_result/' --save_dir './checkpoint/test_result/' --save_out_type xyz --gsnet_gcn_reload 1 --module_gsnet_model model_gsnet_gcn_7_eva_xyz_3649.pth --show_protocol2 --nepoch 2
-```
-
-
 ## Training from Scratch
 ### Human3.6M
 
@@ -72,7 +62,7 @@ To initiate the training of our model, utilizing the identified 2D keypoints (HR
 python main_graph.py  --pro_train 1 --beta 0.2 --k hrn --batchSize 512 --hid_dim 384 --save_model 1  --save_dir './checkpoint/train_result/' --post_refine --save_out_type post --show_protocol2
 ```
 
-To initiate the training of our model, utilizing the ground truth 2D keypoints excluding pose refinement, please execute the following command:
+To initiate the training of our model, utilizing the ground truth 2D keypoints excluding pose refinement and non-local layer, please execute the following command:
 ```bash
 python main_graph.py  --pro_train 1 --beta 0.2 --k gt --batchSize 512 --hid_dim 384 --save_model 1 --save_dir './checkpoint/train_result/' --show_protocol2
 ```
@@ -84,9 +74,17 @@ To evaluate our model using the detected 2D keypoints (HR-Net) with pose refinem
 python main_graph.py -k hrn --beta 0.2 --batchSize 512 --hid_dim 384 --previous_dir './checkpoint/train_result/' --save_out_type post --save_dir './checkpoint/test_result/' --gsnet_gcn_reload 1 --module_gsnet_model [model_gsnet].pth --post_refine --post_refine_reload 1 --post_refine_model [model_post_refine].pth --show_protocol2 --nepoch 2
 ```
 
-To evaluate our model using the ground truth 2D keypoints with pose refinement, please run the following command:
+To evaluate our model using the ground truth 2D keypoints without incorporating pose refinement and and non-local layer, please run the following command:
 ```bash
 python main_graph.py -k gt --beta 0.2 --batchSize 512 --hid_dim 384 --previous_dir './checkpoint/train_result/' --save_dir './checkpoint/test_result/' --save_out_type xyz --gsnet_gcn_reload 1 --module_gsnet_model [model_gsnet].pth --show_protocol2 --nepoch 2
+```
+
+## Evaluating Our Pre-trained Models
+The pre-trained models can be downloaded from [Google Drive](https://drive.google.com/drive/folders/1ByA9gmEEJSMJetQoIuRA2PYfQ7hVhJ3v?usp=sharing). Put them in the `./checkpoint/train_result` directory.
+
+To evaluate our pre-trained model using the ground truth 2D keypoints, please run:
+```bash
+python main_graph.py -k gt --beta 0.2 --batchSize 512 --hid_dim 384 --previous_dir './checkpoint/train_result/' --save_dir './checkpoint/test_result/' --save_out_type xyz --gsnet_gcn_reload 1 --module_gsnet_model model_gsnet_gcn_7_eva_xyz_3649.pth --show_protocol2 --nepoch 2
 ```
 
 ## Acknowledgement
